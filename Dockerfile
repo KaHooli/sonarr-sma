@@ -1,4 +1,4 @@
-ARG ffmpeg_tag=4.4-ubuntu
+ARG ffmpeg_tag=4.4-nvidia
 # Sonarr needs to be develop at the moment as it is based on Ubuntu 20.04 LTS which is needed for FFMPEG requirements, where latest is based on Ubuntu 18.04 LTS.
 ARG sonarr_tag=develop
 FROM jrottenberg/ffmpeg:${ffmpeg_tag} as ffmpeg
