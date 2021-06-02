@@ -23,6 +23,7 @@ RUN \
   apt-get install -y \
     git \
     wget \
+    openssl \
     python3 \
     python3-pip && \
 # make directory
