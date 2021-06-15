@@ -9,9 +9,9 @@ LABEL maintainer="mdhiggins <mdhiggins23@gmail.com>"
 COPY --from=ffmpeg /usr/local/ /usr/local/
 # and its dependancies
 RUN apt update && apt upgrade -y && apt install -y \
-     libnppig10
-     # libnppicc10 \
-     # libnppidei10
+     libnppig10 \
+     libnppicc10 \
+     libnppidei10
 
 ENV SMA_PATH /usr/local/sma
 ENV SMA_RS Sonarr
