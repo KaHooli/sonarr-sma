@@ -1,4 +1,4 @@
-ARG ffmpeg_tag=4.4-nvidia
+ARG ffmpeg_tag=4.4-nvidia2004
 # Sonarr needs to be develop at the moment as it is based on Ubuntu 20.04 LTS which is needed for FFMPEG requirements, where latest is based on Ubuntu 18.04 LTS.
 ARG sonarr_tag=develop
 FROM jrottenberg/ffmpeg:${ffmpeg_tag} as ffmpeg
@@ -8,10 +8,10 @@ LABEL maintainer="mdhiggins <mdhiggins23@gmail.com>"
 # Add files from ffmpeg
 COPY --from=ffmpeg /usr/local/ /usr/local/
 # and its dependancies
-RUN apt update && apt upgrade -y && apt install -y \
-      libnppig10 \
-      libnppicc10 \
-      libnppidei10
+# RUN apt update && apt upgrade -y && apt install -y \
+#      libnppig10 \
+#      libnppicc10 \
+#      libnppidei10
 
 ENV SMA_PATH /usr/local/sma
 ENV SMA_RS Sonarr
@@ -23,7 +23,7 @@ RUN \
   apt-get install -y \
     git \
     wget \
-    openssl \
+#    openssl \
     python3 \
     python3-pip && \
 # make directory
@@ -34,7 +34,7 @@ RUN \
   python3 -m pip install --user --upgrade pip && \
   python3 -m pip install --user virtualenv && \
   python3 -m virtualenv ${SMA_PATH}/venv && \
-  ${SMA_PATH}/venv/bin/pip3 install -r ${SMA_PATH}/setup/requirements.txt && \
+  ${SMA_PATH}/venv/bin/pip install -r ${SMA_PATH}/setup/requirements.txt && \
 # ffmpeg
   chgrp users /usr/local/bin/ffmpeg && \
   chgrp users /usr/local/bin/ffprobe && \
